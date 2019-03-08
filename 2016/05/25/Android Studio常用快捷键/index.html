@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近开始尝试转向Android Studio开发了，于是总结一下常用的快捷键。顺带着粘一段wikipedia上as的简介凑字数。  Android Studio是一个为Android平台开发程序的集成开发环境。2013年5月16日在Google I/O上发布，可供开发者免费使用。2013年5月发布早期预览版本，版本号为0.1。2014年6月发布0.8版本，至此进入beta阶段。第一个稳定版本1.0">
+<meta name="keywords" content="Android Studio,Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Studio常用快捷键">
+<meta property="og:url" content="http://yoursite.com/2016/05/25/Android Studio常用快捷键/index.html">
+<meta property="og:site_name" content="XhkSun&#39;s Blog">
+<meta property="og:description" content="最近开始尝试转向Android Studio开发了，于是总结一下常用的快捷键。顺带着粘一段wikipedia上as的简介凑字数。  Android Studio是一个为Android平台开发程序的集成开发环境。2013年5月16日在Google I/O上发布，可供开发者免费使用。2013年5月发布早期预览版本，版本号为0.1。2014年6月发布0.8版本，至此进入beta阶段。第一个稳定版本1.0">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/XReDHEq.gif">
+<meta property="og:image" content="http://i.imgur.com/ztIJz8S.gif">
+<meta property="og:image" content="http://i.imgur.com/hanZPZS.gif">
+<meta property="og:image" content="http://i.imgur.com/Rvp4uTU.gif">
+<meta property="og:image" content="http://i.imgur.com/ZCZXeWc.gif">
+<meta property="og:image" content="http://i.imgur.com/oSxvPVO.gif">
+<meta property="og:image" content="http://i.imgur.com/Mlqi2Z2.gif">
+<meta property="og:image" content="http://i.imgur.com/jRAcBAQ.gif">
+<meta property="og:image" content="http://i.imgur.com/GQxf0E9.gif">
+<meta property="og:image" content="http://i.imgur.com/FLw7rxu.gif">
+<meta property="og:updated_time" content="2019-03-08T12:44:37.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Studio常用快捷键">
+<meta name="twitter:description" content="最近开始尝试转向Android Studio开发了，于是总结一下常用的快捷键。顺带着粘一段wikipedia上as的简介凑字数。  Android Studio是一个为Android平台开发程序的集成开发环境。2013年5月16日在Google I/O上发布，可供开发者免费使用。2013年5月发布早期预览版本，版本号为0.1。2014年6月发布0.8版本，至此进入beta阶段。第一个稳定版本1.0">
+<meta name="twitter:image" content="http://i.imgur.com/XReDHEq.gif">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/05/25/Android Studio常用快捷键/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android Studio常用快捷键 | XhkSun's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XhkSun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">just someting</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/25/Android Studio常用快捷键/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xia Hankai">
+      <meta itemprop="description" content="粉饰的皮囊太多，有趣的灵魂太少">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XhkSun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android Studio常用快捷键
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-05-25 09:43:05" itemprop="dateCreated datePublished" datetime="2016-05-25T09:43:05+08:00">2016-05-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-08 20:44:37" itemprop="dateModified" datetime="2019-03-08T20:44:37+08:00">2019-03-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android-Studio/" itemprop="url" rel="index"><span itemprop="name">Android Studio</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android-Studio/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近开始尝试转向Android Studio开发了，于是总结一下常用的快捷键。顺带着粘一段wikipedia上as的简介凑字数。</p>
+<blockquote>
+<p>Android Studio是一个为Android平台开发程序的集成开发环境。2013年5月16日在Google I/O上发布，可供开发者免费使用。<br>2013年5月发布早期预览版本，版本号为0.1。2014年6月发布0.8版本，至此进入beta阶段。第一个稳定版本1.0于2014年12月8日发布。<br>Android Studio基于JetBrains IntelliJ IDEA，为Android开发特殊定制，并在Windows、OS X和Linux平台上均可运行。</p>
+</blockquote>
+<p>本篇适用于日常使用，详细快捷键请参考此篇<a href="http://seniorzhai.github.io/2015/02/05/AndroidStudio%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%B1%87%E6%80%BB/" target="_blank" rel="noopener">AndroidStudio快捷键汇总</a></p>
+<h3 id="重构-重命名"><a href="#重构-重命名" class="headerlink" title="重构-重命名"></a>重构-重命名</h3><ul>
+<li><code>Shift</code> + <code>F6</code><br>这个很重要</li>
+</ul>
+<h3 id="提取局部变量"><a href="#提取局部变量" class="headerlink" title="提取局部变量"></a>提取局部变量</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>Alt</code>(<code>Option</code>) + <code>V</code><br><br><img src="http://i.imgur.com/XReDHEq.gif" alt></li>
+</ul>
+<h3 id="提取全局变量"><a href="#提取全局变量" class="headerlink" title="提取全局变量"></a>提取全局变量</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>Alt</code>(<code>Option</code>) + <code>F</code><br><br><img src="http://i.imgur.com/ztIJz8S.gif" alt></li>
+</ul>
+<a id="more"></a>
+<h3 id="快速修复"><a href="#快速修复" class="headerlink" title="快速修复"></a>快速修复</h3><ul>
+<li><code>Alt</code>(<code>Option</code>) + <code>Enter</code>(用于类型强转等快速修复，不可以用于提取全局变量，和eclipse不一样)<br><br><img src="http://i.imgur.com/hanZPZS.gif" alt></li>
+</ul>
+<h3 id="全屏当前标签页"><a href="#全屏当前标签页" class="headerlink" title="全屏当前标签页"></a>全屏当前标签页</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>Shift</code> + <code>F12</code></li>
+</ul>
+<h3 id="撤销-undo"><a href="#撤销-undo" class="headerlink" title="撤销(undo)"></a>撤销(undo)</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>Z</code></li>
+</ul>
+<h3 id="重做-redo"><a href="#重做-redo" class="headerlink" title="重做(redo)"></a>重做(redo)</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>Shift</code> + <code>Z</code></li>
+</ul>
+<h3 id="格式化代码"><a href="#格式化代码" class="headerlink" title="格式化代码"></a>格式化代码</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>Alt</code>(<code>Option</code>) + <code>L</code></li>
+</ul>
+<h3 id="折叠代码"><a href="#折叠代码" class="headerlink" title="折叠代码"></a>折叠代码</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>.</code><br><br><img src="http://i.imgur.com/Rvp4uTU.gif" alt></li>
+</ul>
+<h3 id="方法参数提示"><a href="#方法参数提示" class="headerlink" title="方法参数提示"></a>方法参数提示</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>P</code><br><br><img src="http://i.imgur.com/ZCZXeWc.gif" alt></li>
+</ul>
+<h3 id="显示注释文档"><a href="#显示注释文档" class="headerlink" title="显示注释文档"></a>显示注释文档</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>Q</code></li>
+</ul>
+<h3 id="生成构造器、Getter、Setter"><a href="#生成构造器、Getter、Setter" class="headerlink" title="生成构造器、Getter、Setter"></a>生成构造器、Getter、Setter</h3><ul>
+<li><code>Alt</code>(<code>Option</code>) + <code>Insert</code></li>
+</ul>
+<h3 id="块选中"><a href="#块选中" class="headerlink" title="块选中"></a>块选中</h3><ul>
+<li><code>Alt</code>(<code>Option</code>) + <code>J</code>（解放<code>Ctrl</code>(<code>Command</code>) + <code>LEFT</code>/<code>RIGHT</code>的福音）<br><br><img src="http://i.imgur.com/oSxvPVO.gif" alt></li>
+</ul>
+<h3 id="自动代码"><a href="#自动代码" class="headerlink" title="自动代码"></a>自动代码</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>J</code><br><br><img src="http://i.imgur.com/Mlqi2Z2.gif" alt></li>
+</ul>
+<h3 id="查询当前元素在工程中的引用"><a href="#查询当前元素在工程中的引用" class="headerlink" title="查询当前元素在工程中的引用"></a>查询当前元素在工程中的引用</h3><ul>
+<li><code>Alt</code>(<code>Option</code>) + <code>F7</code><br><br><img src="http://i.imgur.com/jRAcBAQ.gif" alt></li>
+</ul>
+<h3 id="方法间快速跳转"><a href="#方法间快速跳转" class="headerlink" title="方法间快速跳转"></a>方法间快速跳转</h3><ul>
+<li><code>Alt</code>(<code>Option</code>) + <code>UP</code>(<code>DOWN</code>)</li>
+</ul>
+<h3 id="标签页间相互跳转"><a href="#标签页间相互跳转" class="headerlink" title="标签页间相互跳转"></a>标签页间相互跳转</h3><ul>
+<li><code>Alt</code>(<code>Option</code>) + <code>LEFT</code>(<code>RIGHT</code>)</li>
+</ul>
+<h3 id="重写方法"><a href="#重写方法" class="headerlink" title="重写方法"></a>重写方法</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>O</code></li>
+</ul>
+<h3 id="代码上下移动"><a href="#代码上下移动" class="headerlink" title="代码上下移动"></a>代码上下移动</h3><ul>
+<li><code>Alt</code>(<code>Option</code>) + <code>Shift</code> + <code>UP</code>(<code>DOWN</code>)<br><br><img src="http://i.imgur.com/GQxf0E9.gif" alt></li>
+</ul>
+<h3 id="打开设置对话框"><a href="#打开设置对话框" class="headerlink" title="打开设置对话框"></a>打开设置对话框</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>Alt</code>(<code>Option</code>) + <code>S</code></li>
+</ul>
+<h3 id="打开当前项目-模块属性"><a href="#打开当前项目-模块属性" class="headerlink" title="打开当前项目/模块属性"></a>打开当前项目/模块属性</h3><ul>
+<li><code>Ctrl</code>(<code>Command</code>) + <code>Shift</code> + <code>Alt</code>(<code>Option</code>) + <code>S</code></li>
+</ul>
+<h3 id="多行编辑"><a href="#多行编辑" class="headerlink" title="多行编辑"></a>多行编辑</h3><ul>
+<li><code>Alt</code> + 鼠标滑选<br><br><img src="http://i.imgur.com/FLw7rxu.gif" alt></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/23/浅析WinDLX及其实战/" rel="next" title="浅析WinDLX及其实战">
+                <i class="fa fa-chevron-left"></i> 浅析WinDLX及其实战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/08/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Xia Hankai</p>
+              <div class="site-description motion-element" itemprop="description">粉饰的皮囊太多，有趣的灵魂太少</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#重构-重命名"><span class="nav-number">1.</span> <span class="nav-text">重构-重命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提取局部变量"><span class="nav-number">2.</span> <span class="nav-text">提取局部变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提取全局变量"><span class="nav-number">3.</span> <span class="nav-text">提取全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速修复"><span class="nav-number">4.</span> <span class="nav-text">快速修复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全屏当前标签页"><span class="nav-number">5.</span> <span class="nav-text">全屏当前标签页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销-undo"><span class="nav-number">6.</span> <span class="nav-text">撤销(undo)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重做-redo"><span class="nav-number">7.</span> <span class="nav-text">重做(redo)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化代码"><span class="nav-number">8.</span> <span class="nav-text">格式化代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折叠代码"><span class="nav-number">9.</span> <span class="nav-text">折叠代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法参数提示"><span class="nav-number">10.</span> <span class="nav-text">方法参数提示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示注释文档"><span class="nav-number">11.</span> <span class="nav-text">显示注释文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成构造器、Getter、Setter"><span class="nav-number">12.</span> <span class="nav-text">生成构造器、Getter、Setter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块选中"><span class="nav-number">13.</span> <span class="nav-text">块选中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动代码"><span class="nav-number">14.</span> <span class="nav-text">自动代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询当前元素在工程中的引用"><span class="nav-number">15.</span> <span class="nav-text">查询当前元素在工程中的引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法间快速跳转"><span class="nav-number">16.</span> <span class="nav-text">方法间快速跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签页间相互跳转"><span class="nav-number">17.</span> <span class="nav-text">标签页间相互跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重写方法"><span class="nav-number">18.</span> <span class="nav-text">重写方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码上下移动"><span class="nav-number">19.</span> <span class="nav-text">代码上下移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开设置对话框"><span class="nav-number">20.</span> <span class="nav-text">打开设置对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开当前项目-模块属性"><span class="nav-number">21.</span> <span class="nav-text">打开当前项目/模块属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多行编辑"><span class="nav-number">22.</span> <span class="nav-text">多行编辑</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xia Hankai</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
