@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[hexo - Next 主题添加搜索功能]]></title>
     <url>%2F2019%2F03%2F10%2Fhexo-Next-%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD%2F</url>
-    <content type="text"><![CDATA[参考自Yaya’s blog添加Hexo搜索功能 安装相关插件首先安装搜索插件： hexo-generator-searchdb 在hexo路径文件夹下执行： 1$ npm install hexo-generator-searchdb --save 配置hexo安装完成，在hexo的配置文件_config.yml中添加： 12345search: path: search.xml field: post format: html limit: 10000 配置主题Next 主题自带搜索设置，编辑主题配置文件：_config.yml 找到文件中 Local search 的相关配置，设为 true 123# Local searchlocal_search: enable: true 找到文件中algolia search的相关配置，设为true 123# Algolia Searchalgolia_search: enable: true hexo 重新部署1$ hexo d -g]]></content>
+    <content type="text"><![CDATA[参考自Yaya’s blog添加Hexo搜索功能 安装相关插件首先安装搜索插件： hexo-generator-searchdb 在hexo路径文件夹下执行： 1$ npm install hexo-generator-searchdb --save 配置hexo安装完成，在hexo的配置文件_config.yml中添加： 12345search: path: search.xml field: post format: html limit: 10000 配置主题Next 主题自带搜索设置，编辑主题配置文件：_config.yml 找到文件中 Local search 的相关配置，设为 true 123# Local searchlocal_search: enable: true hexo 重新部署1$ hexo d -g]]></content>
       <categories>
         <category>hero</category>
       </categories>
