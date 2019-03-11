@@ -1895,7 +1895,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #20ffff;
+  background: #47ff96;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2944,4 +2944,10 @@ hr {
 }
 .sidebar-nav li:hover {
   color: #0c0b0b;
+}
+body {
+  background: url("/images/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
 }
