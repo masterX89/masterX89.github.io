@@ -98,27 +98,25 @@
 
 
 
-  <meta name="description" content="async/await正式纳入ES7标准之中，给JavaScript的异步编程带来了许多的便利。首先介绍一下async/await的使用场景（大部分情况是由于promise链式带来的不便利）：  多个promise的then链，后续的步骤需要之前的每一个步骤的结果 在循环中需要异步获取数据，循环外异步设置状态  什么是promise从开头的场景就可以知道，使用async/await大部分情况是由">
+  <meta name="description" content="在上一篇的文章中已经简单介绍了promise的使用方法和then链的情况，但是还有一些状态下promise会力不从心：  在循环中需要异步获取数据，循环外获取数据 多个promise的then链，后续的步骤需要之前的每一个步骤的结果  promise的不足我在实际业务操作的时候，初期一直遇到一个困惑，我已经学会了如何使用promise链，但是却无法解决在一个循环中异步获取每一个item，并且要保证">
 <meta name="keywords" content="JavaScript,异步">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript中的async&#x2F;await浅析（一）">
-<meta property="og:url" content="http://xhksun.com/2019/03/09/JavaScript中的async-await浅析/index.html">
+<meta property="og:title" content="JavaScript中的async&#x2F;await浅析（二）">
+<meta property="og:url" content="http://xhksun.com/2019/03/09/JavaScript中的async-await浅析(二)/index.html">
 <meta property="og:site_name" content="XhkSun&#39;s Blog">
-<meta property="og:description" content="async/await正式纳入ES7标准之中，给JavaScript的异步编程带来了许多的便利。首先介绍一下async/await的使用场景（大部分情况是由于promise链式带来的不便利）：  多个promise的then链，后续的步骤需要之前的每一个步骤的结果 在循环中需要异步获取数据，循环外异步设置状态  什么是promise从开头的场景就可以知道，使用async/await大部分情况是由">
+<meta property="og:description" content="在上一篇的文章中已经简单介绍了promise的使用方法和then链的情况，但是还有一些状态下promise会力不从心：  在循环中需要异步获取数据，循环外获取数据 多个promise的then链，后续的步骤需要之前的每一个步骤的结果  promise的不足我在实际业务操作的时候，初期一直遇到一个困惑，我已经学会了如何使用promise链，但是却无法解决在一个循环中异步获取每一个item，并且要保证">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://xhksun.com/images/hexo-pages001.jpg">
-<meta property="og:updated_time" content="2019-03-10T07:55:44.186Z">
+<meta property="og:updated_time" content="2019-03-24T08:54:45.741Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript中的async&#x2F;await浅析（一）">
-<meta name="twitter:description" content="async/await正式纳入ES7标准之中，给JavaScript的异步编程带来了许多的便利。首先介绍一下async/await的使用场景（大部分情况是由于promise链式带来的不便利）：  多个promise的then链，后续的步骤需要之前的每一个步骤的结果 在循环中需要异步获取数据，循环外异步设置状态  什么是promise从开头的场景就可以知道，使用async/await大部分情况是由">
-<meta name="twitter:image" content="http://xhksun.com/images/hexo-pages001.jpg">
+<meta name="twitter:title" content="JavaScript中的async&#x2F;await浅析（二）">
+<meta name="twitter:description" content="在上一篇的文章中已经简单介绍了promise的使用方法和then链的情况，但是还有一些状态下promise会力不从心：  在循环中需要异步获取数据，循环外获取数据 多个promise的then链，后续的步骤需要之前的每一个步骤的结果  promise的不足我在实际业务操作的时候，初期一直遇到一个困惑，我已经学会了如何使用promise链，但是却无法解决在一个循环中异步获取每一个item，并且要保证">
 
 
 
 
 
 
-  <link rel="canonical" href="http://xhksun.com/2019/03/09/JavaScript中的async-await浅析/">
+  <link rel="canonical" href="http://xhksun.com/2019/03/09/JavaScript中的async-await浅析(二)/">
 
 
 
@@ -128,7 +126,7 @@
   };
 </script>
 
-  <title>JavaScript中的async/await浅析（一） | XhkSun's Blog</title>
+  <title>JavaScript中的async/await浅析（二） | XhkSun's Blog</title>
   
 
 
@@ -360,7 +358,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xhksun.com/2019/03/09/JavaScript中的async-await浅析/">
+    <link itemprop="mainEntityOfPage" href="http://xhksun.com/2019/03/09/JavaScript中的async-await浅析(二)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xia Hankai">
@@ -377,7 +375,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript中的async/await浅析（一）
+          <h1 class="post-title" itemprop="name headline">JavaScript中的async/await浅析（二）
 
               
             
@@ -420,7 +418,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-10 15:55:44" itemprop="dateModified" datetime="2019-03-10T15:55:44+08:00">2019-03-10</time>
+                <time title="修改时间：2019-03-24 16:54:45" itemprop="dateModified" datetime="2019-03-24T16:54:45+08:00">2019-03-24</time>
               
             
           </span>
@@ -456,8 +454,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/09/JavaScript中的async-await浅析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/09/JavaScript中的async-await浅析/" itemprop="commentCount"></span>
+                <a href="/2019/03/09/JavaScript中的async-await浅析(二)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/09/JavaScript中的async-await浅析(二)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -465,7 +463,7 @@
 
           
           
-            <span id="/2019/03/09/JavaScript中的async-await浅析/" class="leancloud_visitors" data-flag-title="JavaScript中的async/await浅析（一）">
+            <span id="/2019/03/09/JavaScript中的async-await浅析(二)/" class="leancloud_visitors" data-flag-title="JavaScript中的async/await浅析（二）">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -490,7 +488,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">4k</span>
+                <span title="本文字数">5.6k</span>
               
 
               
@@ -504,7 +502,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">4 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -524,50 +522,60 @@
       
 
       
-        <p><img src="/images/hexo-pages001.jpg" alt="hexo-pages001"></p>
-<p>async/await正式纳入<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_Next_support_in_Mozilla#ECMAScript_2017" target="_blank" rel="noopener">ES7</a>标准之中，给JavaScript的异步编程带来了许多的便利。首先介绍一下async/await的使用场景（大部分情况是由于promise链式带来的不便利）：</p>
+        <p>在上一篇的文章中已经简单介绍了promise的使用方法和then链的情况，但是还有一些状态下promise会力不从心：</p>
 <ul>
+<li>在循环中需要异步获取数据，循环外获取数据</li>
 <li>多个promise的then链，后续的步骤需要之前的<strong>每一个</strong>步骤的结果</li>
-<li>在循环中需要异步获取数据，循环外异步设置状态</li>
 </ul>
-<h1 id="什么是promise"><a href="#什么是promise" class="headerlink" title="什么是promise"></a>什么是promise</h1><p>从开头的场景就可以知道，使用async/await大部分情况是由于Promise在解决某些需求的时候力不从心了，那么我们就需要先了解Promise，这里是MDN的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">Promise定义</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises" target="_blank" rel="noopener">使用Promise</a>，在理解Promise可以胜任的场景之后，再引入async/await的优点。</p>
-<blockquote>
-<p><strong>Promise</strong> 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。</p>
-<p>Promise 本质上是一个绑定了回调的对象，而不是将回调传进函数内部。</p>
-</blockquote>
+<h1 id="promise的不足"><a href="#promise的不足" class="headerlink" title="promise的不足"></a>promise的不足</h1><p>我在实际业务操作的时候，初期一直遇到一个困惑，我已经学会了如何使用promise链，但是却无法解决在一个循环中异步获取每一个item，并且要保证他们的<strong>遍历次序</strong>，最后在循环外setState。以及我无法在链式中的后续步骤获取之前<strong>每一步</strong>的操作结果。接着我将举例说明这些情况产生的场景，并提出我当前的解决方案。</p>
 <a id="more"></a>
-<p>首先我们设计一个业务场景，需求中task1从服务器异步获取数据，然后再传递给task2完成任务。代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'task1 take too longtime'</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'this is task2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task1();</span><br><span class="line">task2();</span><br></pre></td></tr></table></figure>
-<p>然而输出结果却如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this is task2</span><br><span class="line">task1 take too longtime</span><br></pre></td></tr></table></figure>
-<p>如果在实际场景中，task2的参数就会为undefined，原因是由于task1是异步函数调用，那么我们如果想要这两个task顺序执行应该怎么办呢？在这里引入Promise的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises#%E7%BA%A6%E5%AE%9A" target="_blank" rel="noopener">约定</a>：</p>
+<h2 id="循环异步获取数据"><a href="#循环异步获取数据" class="headerlink" title="循环异步获取数据"></a>循环异步获取数据</h2><p>在这里假设有一个list数组，每一个item是这个任务的id，名称和执行时间。需要对该数组遍历，每一个遍历操作是异步函数，我把每一个item的执行时间刻意设置成不同时长，期待数组遍历时以id递增的次序读取每一个item。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> content = [</span><br><span class="line">&#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">name</span>:<span class="string">'task1'</span>,<span class="attr">time</span>:<span class="number">200</span>&#125;,</span><br><span class="line">&#123;<span class="attr">id</span>:<span class="number">2</span>,<span class="attr">name</span>:<span class="string">'task2'</span>,<span class="attr">time</span>:<span class="number">300</span>&#125;,</span><br><span class="line">&#123;<span class="attr">id</span>:<span class="number">3</span>,<span class="attr">name</span>:<span class="string">'task3'</span>,<span class="attr">time</span>:<span class="number">100</span>&#125;];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log(item);</span><br><span class="line">         resolve();</span><br><span class="line">     &#125;,item.time);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">content.map(<span class="function">(<span class="params">item</span>)=&gt;</span>&#123;</span><br><span class="line">    getData(item);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'I wanna result'</span>);</span><br></pre></td></tr></table></figure>
+<p>下面看一下测试效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">I wanna result</span><br><span class="line">&#123; id: 3, name: &apos;task3&apos;, time: 100 &#125;</span><br><span class="line">&#123; id: 1, name: &apos;task1&apos;, time: 200 &#125;</span><br><span class="line">&#123; id: 2, name: &apos;task2&apos;, time: 300 &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到结果很不幸，读取到的item并不是以id递增的次序顺序输出的，而是以异步函数执行所需的时间打印出来的，并且期待的最终结果最先执行。那么我是否可以使用promise么？答案是可以的，但是我之后再另一篇文章中对此情况进行说明，在这里我们先解释使用async/await解决该场景。</p>
+<p>在这个需求场景中，之前我一直使用的promise链无法发挥其作用了。原因很简单，我需要在循环中使用then来处理这个问题，但是我不知道应该加在哪里。并且最终结果也需要在循环结束的时候，加在then的最后。在阐述完promise链的第二个不足后，我再一起提出解决方案。</p>
+<h2 id="获取每一步结果"><a href="#获取每一步结果" class="headerlink" title="获取每一步结果"></a>获取每一步结果</h2><p>在这个需求场景中，我们设计一个问题，我们需要执行三个任务，这三个任务是异步函数，但是在第三个任务执行的时候，需要用到前两个函数的执行结果。拿到前一个执行结果很简单，但是如果想要获取到的一个函数的执行结果，就需要将第一个函数的执行结果添加到第二个函数传递给第三个函数的结果中。在这里我直接字符串连接，最后结果可以通过截取逗号来得到每一个结果。除了字符串连接还可以将每一步结果push到数组中，然后把数据数组在then链中传递。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(<span class="string">'result1'</span>), <span class="number">100</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(<span class="string">`<span class="subst">$&#123;data&#125;</span>,result2`</span>), <span class="number">200</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task3</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(<span class="string">`<span class="subst">$&#123;data&#125;</span>,result3`</span>), <span class="number">300</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task1()</span><br><span class="line">.then(<span class="function">(<span class="params">data</span>)=&gt;</span>task2(data))</span><br><span class="line">.then(<span class="function">(<span class="params">data</span>)=&gt;</span>task3(data))</span><br><span class="line">.then(<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>下面是最后的结果，这是第三个任务中的异步函数获取到的最后结果，可以通过逗号将字符串切割获取到每一步的结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result1,result2,result3</span><br></pre></td></tr></table></figure>
+<h1 id="async-await介绍"><a href="#async-await介绍" class="headerlink" title="async/await介绍"></a>async/await介绍</h1><p>在这里可以先看一下<a href="http://www.ruanyifeng.com/blog/2015/05/async.html" target="_blank" rel="noopener">阮一峰老师的介绍</a>，然后在下面我给出我的一些理解。</p>
 <blockquote>
-<ul>
-<li>在 JavaScript 事件队列的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop#%E6%89%A7%E8%A1%8C%E8%87%B3%E5%AE%8C%E6%88%90" target="_blank" rel="noopener">当前运行完成</a>之前，回调函数永远不会被调用。</li>
-<li>通过 .then 形式添加的回调函数，甚至都在异步操作完成之后才被添加的函数，都会被调用。</li>
-<li>通过多次调用 .then，可以添加多个回调函数，它们会按照插入顺序并且独立运行。</li>
-</ul>
+<p>异步I/O不就是读取一个文件吗，干嘛要搞得这么复杂？<strong>异步编程的最高境界，就是根本不用关心它是不是异步。</strong></p>
 </blockquote>
-<p>从上述的约定可以看出，Promise最好的应用场景就是链式调用。</p>
-<h2 id="链式调用"><a href="#链式调用" class="headerlink" title="链式调用"></a>链式调用</h2><p>还是上一个业务场景，这次我们用Promise的then链来解决这个异步函数调用的问题：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'task1 take too longtime'</span>);</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'this is task2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task1().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    task2();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>最终结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">task1 take too longtime</span><br><span class="line">this is task2</span><br></pre></td></tr></table></figure>
-<p>同时Promise可不是仅仅.then一次，所谓的链式调用即是可以形成一个then链，理论上可以一直then来将异步函数顺序地执行下去，如下面的业务场景共有三个任务，需要顺序执行，分别消耗100，200，300ms的时间：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`task1 take <span class="subst">$&#123;time&#125;</span> ms`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(), time);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`task2 take <span class="subst">$&#123;time&#125;</span> ms`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(), time);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task3</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`task3 take <span class="subst">$&#123;time&#125;</span> ms`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(), time);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finalTask</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.time(<span class="string">'finalTask'</span>);</span><br><span class="line">    <span class="keyword">const</span> time1 = <span class="number">100</span>, time2 = <span class="number">200</span>, time3 = <span class="number">300</span>;<span class="comment">//三个任务分别模拟100，200，300ms</span></span><br><span class="line">    task1(time1)</span><br><span class="line">        .then(<span class="function"><span class="params">()</span>=&gt;</span>task2(time2))</span><br><span class="line">        .then(<span class="function"><span class="params">()</span>=&gt;</span>task3(time3))</span><br><span class="line">        .then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.timeEnd(<span class="string">'finalTask'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">finalTask();</span><br></pre></td></tr></table></figure>
-<p>最后的结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">task1 take 100 ms</span><br><span class="line">task2 take 200 ms</span><br><span class="line">task3 take 300 ms</span><br><span class="line">finalTask: 626.755ms</span><br></pre></td></tr></table></figure>
-<p>可以看到三个任务是顺序执行的，并且消耗的时间与计时器的时间相差无几。</p>
-<h2 id="链式调用传参"><a href="#链式调用传参" class="headerlink" title="链式调用传参"></a>链式调用传参</h2><p>设计场景中一个常见的需求就是连续执行两个或者多个异步操作，并且每一个后来的操作都在前面的操作执行成功之后，带着上一步操作所返回的结果开始执行。下面演示promise链式传递参数：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'task1 take too longtime'</span>);</span><br><span class="line">            resolve(<span class="string">'this is task1 data'</span>);</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'this is task2'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task1().then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    task2(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>最后结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">task1 take too longtime</span><br><span class="line">this is task2</span><br><span class="line">this is task1 data</span><br></pre></td></tr></table></figure>
-<p>可以看到任务1和2还是顺序执行的，并且在任务2中，拿到了任务1传递来的参数，这个参数通过任务1中的resolve函数传递给下一个异步函数。每一个 Promise 代表了链式中另一个异步过程的完成。</p>
-<h2 id="Catch的后续链式调用"><a href="#Catch的后续链式调用" class="headerlink" title="Catch的后续链式调用"></a>Catch的后续链式调用</h2><p>但是在很多场景中，可能存在需要catch error的情况，比如服务器宕机了，或者甚至服务器传来不正确的json数据（笔者就遇到了这种情况，json格式错误，但是前端可以通过字符串操作来纠正并解析数据，然而每次异步获取数据都会走catch）。在这种场景下，首先要明确一点，catch之后是可以继续链式调用promise的，同时catch中可以对数据处理并传递给下一个函数，代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Initial'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Something failed'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Do this'</span>);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Do that'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'error text'</span>;</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Do this whatever happened before'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>最后的执行结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Initial</span><br><span class="line">Do that</span><br><span class="line">error text</span><br><span class="line">Do this whatever happened before</span><br></pre></td></tr></table></figure>
-<p>对这个结果进行分析，可以看出异步函数是链式顺序执行的，其中“Do this”方法中由于抛出一个Error，所以没有输出“Do this”。接着catch方法中正确执行，并且假设“error text”为处理后的结果，是可以顺利传递给下一个方法的。</p>
+<p>我们从最开始的问题入手，我们遇到了什么问题？一个变量初始化—&gt;异步读取服务器数据—&gt;修改变量。但是在这个过程中，由于异步方法的存在，使得我们往往先执行了修改变量的操作，后从服务器获取到了数据。那么，我们是不是可以用一种方法，让我们可以不用去关心一个方法是不是异步函数，但是可以很轻松的去异步编程呢？async/await就提供了这样一个解决方案。</p>
+<h2 id="什么是async-await"><a href="#什么是async-await" class="headerlink" title="什么是async/await"></a>什么是async/await</h2><ol>
+<li><strong>async</strong>用于将一个函数申明为异步函数</li>
+<li><strong>await</strong>用于等待一个异步函数的执行完成，即通过await来调用一个async函数</li>
+<li>且根据语法规定：await只能出现在async函数中</li>
+</ol>
+<h2 id="什么是async"><a href="#什么是async" class="headerlink" title="什么是async"></a>什么是async</h2><p>先通过一个测试程序来输出async申明的函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'what is async'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getData());</span><br></pre></td></tr></table></figure>
+<p>最后控制台输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Promise &#123; &apos;what is async&apos; &#125;</span><br></pre></td></tr></table></figure>
+<p>通过这个例子就可以明白，原来用async申明的函数，最后也是返回一个promise啊！那么我们依旧可以使用then链来让异步函数按自己想要的顺序执行，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'what is async'</span>;</span><br><span class="line">&#125;</span><br><span class="line">getData().then(<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;<span class="built_in">console</span>.log(data)&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们通过then链把这个异步函数的结果输出出来，可以看到async申明的函数，本质上就是一个异步函数，也可以使用then来获取到结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">what is async</span><br></pre></td></tr></table></figure>
+<h2 id="什么是await"><a href="#什么是await" class="headerlink" title="什么是await"></a>什么是await</h2><p>我们只有将async和await组合使用，才可以看出async/await比promise更加优秀的地方。首先先看一下await如何使用，如下是样例程序：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'what is async'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = <span class="keyword">await</span> getData();</span><br><span class="line">    <span class="built_in">console</span>.log(temp);</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+<p>最后结果和在then里获取promise结果一致：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">what is async</span><br></pre></td></tr></table></figure>
+<p>但是！可以看出来<code>let temp = await getData();</code>这一条语句，在使用的时候，已经和平时编程习惯相差无几了。那么我们来看一看，如何解决文章开头promise的问题。</p>
+<h1 id="async-await解决方案"><a href="#async-await解决方案" class="headerlink" title="async/await解决方案"></a>async/await解决方案</h1><h2 id="循环异步获取数据-1"><a href="#循环异步获取数据-1" class="headerlink" title="循环异步获取数据"></a>循环异步获取数据</h2><p>这是文章开头的问题，这里重述一遍。这里假设有一个list数组，每一个item是这个任务的id，名称和执行时间。需要对该数组遍历，每一个遍历操作是异步函数，我把每一个item的执行时间刻意设置成不同时长，期待数组遍历时以id递增的次序读取每一个item。</p>
+<p>但是我们这次，使用async/await来重写这个场景，不使用then，预期结果为：三个任务task按照id递增顺序输出，三个任务执行完成后，最终结果才输出。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> content = [</span><br><span class="line">&#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">name</span>:<span class="string">'task1'</span>,<span class="attr">time</span>:<span class="number">200</span>&#125;,</span><br><span class="line">&#123;<span class="attr">id</span>:<span class="number">2</span>,<span class="attr">name</span>:<span class="string">'task2'</span>,<span class="attr">time</span>:<span class="number">300</span>&#125;,</span><br><span class="line">&#123;<span class="attr">id</span>:<span class="number">3</span>,<span class="attr">name</span>:<span class="string">'task3'</span>,<span class="attr">time</span>:<span class="number">100</span>&#125;];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log(item);</span><br><span class="line">         resolve();</span><br><span class="line">     &#125;,item.time);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> content) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = <span class="keyword">await</span> getData(item);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I wanna result'</span>);</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+<p>可以看出，使用async和await不仅可以写出类似于适应平时编程习惯的写法，而且还可以满足场景需求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123; id: 1, name: &apos;task1&apos;, time: 200 &#125;</span><br><span class="line">&#123; id: 2, name: &apos;task2&apos;, time: 300 &#125;</span><br><span class="line">&#123; id: 3, name: &apos;task3&apos;, time: 100 &#125;</span><br><span class="line">I wanna result</span><br></pre></td></tr></table></figure>
+<p>但是这个场景中有一个问题存在，由于<strong>forEach</strong>和<strong>map</strong>这两种写法，会要求在遍历中使用一个<strong>函数</strong>，而await必须要存在于async申明的函数中。所以await在这两种循环中是无法胜任的，请尽量使用没有内部函数的循环。</p>
+<h2 id="获取每一步结果-1"><a href="#获取每一步结果-1" class="headerlink" title="获取每一步结果"></a>获取每一步结果</h2><p>重述一遍文章开头的场景：在这个需求场景中，我们设计一个问题，我们需要执行三个任务，这三个任务是异步函数，但是在第三个任务执行的时候，需要用到前两个函数的执行结果。这里我们改写用async/await的写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(<span class="string">'result1'</span>), <span class="number">100</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(<span class="string">`result2`</span>), <span class="number">200</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(<span class="string">`result3`</span>), <span class="number">300</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> task1Data = <span class="keyword">await</span> task1();</span><br><span class="line">    <span class="keyword">let</span> task2Data = <span class="keyword">await</span> task2();</span><br><span class="line">    <span class="keyword">let</span> task3Data = <span class="keyword">await</span> task3();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'task1Data: '</span>,task1Data);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'task2Data: '</span>,task2Data);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'task3Data: '</span>,task3Data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+<p>从结果可以看到，三个任务是依次执行的，而且保存在了各自的变量申明之中，在后续的步骤中，可以在任意位置来调用读取异步函数的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">task1Data:  result1</span><br><span class="line">task2Data:  result2</span><br><span class="line">task3Data:  result3</span><br></pre></td></tr></table></figure>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a href="https://segmentfault.com/u/jamesfancy" target="_blank" rel="noopener">边城</a>老师的<a href="https://segmentfault.com/a/1190000007535316" target="_blank" rel="noopener">理解 JavaScript 的 async/await</a></li>
+<li><a href="http://www.ruanyifeng.com/" target="_blank" rel="noopener">阮一峰</a>老师的<a href="http://www.ruanyifeng.com/blog/2015/05/async.html" target="_blank" rel="noopener">async 函数的含义和用法</a></li>
+</ol>
 
       
     </div>
@@ -616,8 +624,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/10/hexo-Next-主题添加搜索功能/" rel="prev" title="hexo - Next 主题添加搜索功能">
-                hexo - Next 主题添加搜索功能 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/09/JavaScript中的async-await浅析(一)/" rel="prev" title="JavaScript中的async/await浅析（一）">
+                JavaScript中的async/await浅析（一） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -691,7 +699,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -793,7 +801,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是promise"><span class="nav-number">1.</span> <span class="nav-text">什么是promise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#链式调用"><span class="nav-number">1.1.</span> <span class="nav-text">链式调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链式调用传参"><span class="nav-number">1.2.</span> <span class="nav-text">链式调用传参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Catch的后续链式调用"><span class="nav-number">1.3.</span> <span class="nav-text">Catch的后续链式调用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#promise的不足"><span class="nav-number">1.</span> <span class="nav-text">promise的不足</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#循环异步获取数据"><span class="nav-number">1.1.</span> <span class="nav-text">循环异步获取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取每一步结果"><span class="nav-number">1.2.</span> <span class="nav-text">获取每一步结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#async-await介绍"><span class="nav-number">2.</span> <span class="nav-text">async/await介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是async-await"><span class="nav-number">2.1.</span> <span class="nav-text">什么是async/await</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是async"><span class="nav-number">2.2.</span> <span class="nav-text">什么是async</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是await"><span class="nav-number">2.3.</span> <span class="nav-text">什么是await</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#async-await解决方案"><span class="nav-number">3.</span> <span class="nav-text">async/await解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#循环异步获取数据-1"><span class="nav-number">3.1.</span> <span class="nav-text">循环异步获取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取每一步结果-1"><span class="nav-number">3.2.</span> <span class="nav-text">获取每一步结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -826,7 +834,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">12k</span>
+    <span title="站点总字数">18k</span>
   
 
   
@@ -835,7 +843,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">11 分钟</span>
+    <span title="站点阅读时长">16 分钟</span>
   
 </div>
 

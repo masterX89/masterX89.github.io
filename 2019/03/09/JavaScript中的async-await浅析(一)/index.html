@@ -98,33 +98,27 @@
 
 
 
-  <meta name="description" content="WinDLX简介 WinDLX模拟器是一个基于Windows操作系统的图形化、交互式DLX指令集模拟器，能够演示DLX指令集流水线是如何工作的。该模拟器可以装载DLX汇编语言程序（后缀为“.s”的文件），然后单步、设断点或是连续执行该程序。CPU的寄存器、流水线、I/O和存储器都用图形进行表示，以形象生动的方式描述DLX流水线的工作过程。模拟器还提供了对流水线操作的统计功能，便于对流水线进行性能分">
-<meta name="keywords" content="WinDLX,指令集流水线">
+  <meta name="description" content="async/await正式纳入ES7标准之中，给JavaScript的异步编程带来了许多的便利。首先介绍一下async/await的使用场景（大部分情况是由于promise链式带来的不便利）：  多个promise的then链，后续的步骤需要之前的每一个步骤的结果 在循环中需要异步获取数据，循环外异步设置状态  什么是promise从开头的场景就可以知道，使用async/await大部分情况是由">
+<meta name="keywords" content="JavaScript,异步">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅析WinDLX及其实战">
-<meta property="og:url" content="http://xhksun.com/2016/04/23/浅析WinDLX及其实战/index.html">
+<meta property="og:title" content="JavaScript中的async&#x2F;await浅析（一）">
+<meta property="og:url" content="http://xhksun.com/2019/03/09/JavaScript中的async-await浅析(一)/index.html">
 <meta property="og:site_name" content="XhkSun&#39;s Blog">
-<meta property="og:description" content="WinDLX简介 WinDLX模拟器是一个基于Windows操作系统的图形化、交互式DLX指令集模拟器，能够演示DLX指令集流水线是如何工作的。该模拟器可以装载DLX汇编语言程序（后缀为“.s”的文件），然后单步、设断点或是连续执行该程序。CPU的寄存器、流水线、I/O和存储器都用图形进行表示，以形象生动的方式描述DLX流水线的工作过程。模拟器还提供了对流水线操作的统计功能，便于对流水线进行性能分">
+<meta property="og:description" content="async/await正式纳入ES7标准之中，给JavaScript的异步编程带来了许多的便利。首先介绍一下async/await的使用场景（大部分情况是由于promise链式带来的不便利）：  多个promise的then链，后续的步骤需要之前的每一个步骤的结果 在循环中需要异步获取数据，循环外异步设置状态  什么是promise从开头的场景就可以知道，使用async/await大部分情况是由">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://i.imgur.com/NvyjyDO.png">
-<meta property="og:image" content="http://i.imgur.com/3XBX80r.png">
-<meta property="og:image" content="http://i.imgur.com/1qM62YH.png">
-<meta property="og:image" content="http://i.imgur.com/VqE29fz.png">
-<meta property="og:image" content="https://upload.wikimedia.org/math/6/2/1/6217b3c99a3243afcd5d8dbd58186822.png">
-<meta property="og:image" content="https://upload.wikimedia.org/math/8/a/4/8a49332e4a46b3a2c7accec81160f5e3.png">
-<meta property="og:image" content="https://upload.wikimedia.org/math/d/1/9/d19d674c2da2a8c3864d97e0326ba9b4.png">
-<meta property="og:updated_time" content="2019-03-08T12:44:37.361Z">
+<meta property="og:image" content="http://xhksun.com/images/hexo-pages001.jpg">
+<meta property="og:updated_time" content="2019-03-10T07:55:44.186Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅析WinDLX及其实战">
-<meta name="twitter:description" content="WinDLX简介 WinDLX模拟器是一个基于Windows操作系统的图形化、交互式DLX指令集模拟器，能够演示DLX指令集流水线是如何工作的。该模拟器可以装载DLX汇编语言程序（后缀为“.s”的文件），然后单步、设断点或是连续执行该程序。CPU的寄存器、流水线、I/O和存储器都用图形进行表示，以形象生动的方式描述DLX流水线的工作过程。模拟器还提供了对流水线操作的统计功能，便于对流水线进行性能分">
-<meta name="twitter:image" content="http://i.imgur.com/NvyjyDO.png">
+<meta name="twitter:title" content="JavaScript中的async&#x2F;await浅析（一）">
+<meta name="twitter:description" content="async/await正式纳入ES7标准之中，给JavaScript的异步编程带来了许多的便利。首先介绍一下async/await的使用场景（大部分情况是由于promise链式带来的不便利）：  多个promise的then链，后续的步骤需要之前的每一个步骤的结果 在循环中需要异步获取数据，循环外异步设置状态  什么是promise从开头的场景就可以知道，使用async/await大部分情况是由">
+<meta name="twitter:image" content="http://xhksun.com/images/hexo-pages001.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://xhksun.com/2016/04/23/浅析WinDLX及其实战/">
+  <link rel="canonical" href="http://xhksun.com/2019/03/09/JavaScript中的async-await浅析(一)/">
 
 
 
@@ -134,7 +128,7 @@
   };
 </script>
 
-  <title>浅析WinDLX及其实战 | XhkSun's Blog</title>
+  <title>JavaScript中的async/await浅析（一） | XhkSun's Blog</title>
   
 
 
@@ -366,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xhksun.com/2016/04/23/浅析WinDLX及其实战/">
+    <link itemprop="mainEntityOfPage" href="http://xhksun.com/2019/03/09/JavaScript中的async-await浅析(一)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xia Hankai">
@@ -383,7 +377,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浅析WinDLX及其实战
+          <h1 class="post-title" itemprop="name headline">JavaScript中的async/await浅析（一）
 
               
             
@@ -409,7 +403,7 @@
                 
               
 
-              <time title="创建时间：2016-04-23 20:38:05" itemprop="dateCreated datePublished" datetime="2016-04-23T20:38:05+08:00">2016-04-23</time>
+              <time title="创建时间：2019-03-09 10:28:22" itemprop="dateCreated datePublished" datetime="2019-03-09T10:28:22+08:00">2019-03-09</time>
             
 
             
@@ -426,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-08 20:44:37" itemprop="dateModified" datetime="2019-03-08T20:44:37+08:00">2019-03-08</time>
+                <time title="修改时间：2019-03-10 15:55:44" itemprop="dateModified" datetime="2019-03-10T15:55:44+08:00">2019-03-10</time>
               
             
           </span>
@@ -443,7 +437,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机体系结构/" itemprop="url" rel="index"><span itemprop="name">计算机体系结构</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
 
                 
                 
@@ -462,8 +456,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2016/04/23/浅析WinDLX及其实战/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/04/23/浅析WinDLX及其实战/" itemprop="commentCount"></span>
+                <a href="/2019/03/09/JavaScript中的async-await浅析(一)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/09/JavaScript中的async-await浅析(一)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -471,7 +465,7 @@
 
           
           
-            <span id="/2016/04/23/浅析WinDLX及其实战/" class="leancloud_visitors" data-flag-title="浅析WinDLX及其实战">
+            <span id="/2019/03/09/JavaScript中的async-await浅析(一)/" class="leancloud_visitors" data-flag-title="JavaScript中的async/await浅析（一）">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -530,172 +524,50 @@
       
 
       
-        <h1 id="WinDLX简介"><a href="#WinDLX简介" class="headerlink" title="WinDLX简介"></a>WinDLX简介</h1><blockquote>
-<p>WinDLX模拟器是一个基于Windows操作系统的图形化、交互式DLX指令集模拟器，能够演示DLX指令集流水线是如何工作的。该模拟器可以装载DLX汇编语言程序（后缀为“.s”的文件），然后单步、设断点或是连续执行该程序。CPU的寄存器、流水线、I/O和存储器都用图形进行表示，以形象生动的方式描述DLX流水线的工作过程。模拟器还提供了对流水线操作的统计功能，便于对流水线进行性能分析。</p>
-</blockquote>
-<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><ul>
-<li>主要运行在win3.0上，16bit软件，<font color="#FF0000">不支持64bit系统</font>。所以在使用前需要确保系统环境为32bit，方可兼容此软件，否则需要虚拟机环境。</li>
-<li>为WinDLX创建目录，例如D:\WINDLX，注意受编译的约束，路径名中<font color="#FF0000">不可以包含汉字</font>。</li>
-<li>解压WinDLX软件包或拷贝所有的WinDLX文件（至少包含 windlx.exe，windlx.hlp，fact.s 和input.s ）到这个WinDLX 目录。</li>
+        <p><img src="/images/hexo-pages001.jpg" alt="hexo-pages001"></p>
+<p>async/await正式纳入<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_Next_support_in_Mozilla#ECMAScript_2017" target="_blank" rel="noopener">ES7</a>标准之中，给JavaScript的异步编程带来了许多的便利。首先介绍一下async/await的使用场景（大部分情况是由于promise链式带来的不便利）：</p>
+<ul>
+<li>多个promise的then链，后续的步骤需要之前的<strong>每一个</strong>步骤的结果</li>
+<li>在循环中需要异步获取数据，循环外异步设置状态</li>
 </ul>
+<h1 id="什么是promise"><a href="#什么是promise" class="headerlink" title="什么是promise"></a>什么是promise</h1><p>从开头的场景就可以知道，使用async/await大部分情况是由于Promise在解决某些需求的时候力不从心了，那么我们就需要先了解Promise，这里是MDN的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">Promise定义</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises" target="_blank" rel="noopener">使用Promise</a>，在理解Promise可以胜任的场景之后，再引入async/await的优点。</p>
+<blockquote>
+<p><strong>Promise</strong> 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。</p>
+<p>Promise 本质上是一个绑定了回调的对象，而不是将回调传进函数内部。</p>
+</blockquote>
 <a id="more"></a>
-<h1 id="WinDLX子窗口"><a href="#WinDLX子窗口" class="headerlink" title="WinDLX子窗口"></a>WinDLX子窗口</h1><h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><ul>
-<li>IF取指阶段</li>
-<li>ID译码阶段</li>
-<li>MEM访存阶段</li>
-<li>WB写回阶段</li>
-<li>intEX整型加阶段执行</li>
-<li>faddEX浮点加执行阶段</li>
-<li>fmul浮点乘执行阶段</li>
-<li>fdivEX浮点除执行阶段</li>
-</ul>
-<p><img src="http://i.imgur.com/NvyjyDO.png" alt></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><img src="http://i.imgur.com/3XBX80r.png" alt></p>
+<p>首先我们设计一个业务场景，需求中task1从服务器异步获取数据，然后再传递给task2完成任务。代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'task1 take too longtime'</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'this is task2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task1();</span><br><span class="line">task2();</span><br></pre></td></tr></table></figure>
+<p>然而输出结果却如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this is task2</span><br><span class="line">task1 take too longtime</span><br></pre></td></tr></table></figure>
+<p>如果在实际场景中，task2的参数就会为undefined，原因是由于task1是异步函数调用，那么我们如果想要这两个task顺序执行应该怎么办呢？在这里引入Promise的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises#%E7%BA%A6%E5%AE%9A" target="_blank" rel="noopener">约定</a>：</p>
 <blockquote>
-<p>三栏信息，从左到右依次为：地址 (符号或数字)、命令的十六进制机器代码和汇编命令。</p>
-</blockquote>
-<p><img src="http://i.imgur.com/1qM62YH.png" alt></p>
-<blockquote>
-<p>按下 F7 键，模拟就向前执行一步，第一行的颜色变成黄色，下一行变成棕色，依次向下执行。</p>
-</blockquote>
-<h2 id="Clock-Cycle-Diagram"><a href="#Clock-Cycle-Diagram" class="headerlink" title="Clock Cycle Diagram"></a>Clock Cycle Diagram</h2><p><img src="http://i.imgur.com/VqE29fz.png" alt></p>
-<blockquote>
-<p>横坐标代表时钟周期，纵坐标为指令集</p>
-</blockquote>
-<h2 id="Breakpoint"><a href="#Breakpoint" class="headerlink" title="Breakpoint"></a>Breakpoint</h2><blockquote>
-<p>此为增设断点的子窗口</p>
-</blockquote>
-<h2 id="Register"><a href="#Register" class="headerlink" title="Register"></a>Register</h2><blockquote>
-<p>此为寄存器的子窗口</p>
-</blockquote>
-<h2 id="Statistics"><a href="#Statistics" class="headerlink" title="Statistics"></a>Statistics</h2><blockquote>
-<p>分析窗口，主要关注RAW stall数据相关，Structral stall结构相关，Control stall控制相关。</p>
-<p>下文中会主要分析这三者的产生原因及其消除方法。</p>
-</blockquote>
-<h1 id="WinDLX指令分类"><a href="#WinDLX指令分类" class="headerlink" title="WinDLX指令分类"></a>WinDLX指令分类</h1><ol>
-<li>Load/Store指令：除R0之外，所有通用寄存器与浮点寄存器都可以作为加载或存储之用</li>
-<li>ALU操作指令：所有的ALU操作都是寄存器–寄存器指令。加，减，与，或，异或，移位，比较指令比较两个寄存器(=, !=, &lt;, &gt;, =&lt;, =&gt;)，如果条件为真，则在目标寄存器置1，否则置0。</li>
-<li>分支/跳转指令：所有分支都是条件分支，分支条件由指令测试寄存器为零或非零来指定。</li>
-<li>浮点运算指令：浮点加，减，乘，除(浮点格式为IEEE754)</li>
-</ol>
-<h1 id="Trap机制"><a href="#Trap机制" class="headerlink" title="Trap机制"></a>Trap机制</h1><blockquote>
-<p>Trap在DLX程序和系统I/O之间建立了接口。在WinDLX中共定义了5种Trap。</p>
-</blockquote>
 <ul>
-<li>0对于Trap指令来说是无效参数，Trap  0用来结束程序</li>
-<li>Trap  1可以为读写打开一个文件，打开的文件在DLX重置或结束之后自动关闭</li>
-<li>Trap  2关闭由Trap  1打开的文件</li>
-<li>Trap  3从文件块读，读入一个文件块或者标准输入的一行</li>
-<li>Trap  4向文件块写，向文存储器或标准输出块写</li>
+<li>在 JavaScript 事件队列的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop#%E6%89%A7%E8%A1%8C%E8%87%B3%E5%AE%8C%E6%88%90" target="_blank" rel="noopener">当前运行完成</a>之前，回调函数永远不会被调用。</li>
+<li>通过 .then 形式添加的回调函数，甚至都在异步操作完成之后才被添加的函数，都会被调用。</li>
+<li>通过多次调用 .then，可以添加多个回调函数，它们会按照插入顺序并且独立运行。</li>
 </ul>
-<h1 id="实例讲解"><a href="#实例讲解" class="headerlink" title="实例讲解"></a>实例讲解</h1><h2 id="程序说明"><a href="#程序说明" class="headerlink" title="程序说明"></a>程序说明</h2><p>功能：卡特兰数求解<br><br>输入：输入一个大于0的自然数n，程序会计算第n项的卡特兰数<br></p>
-<p>测试用例：</p>
-<ul>
-<li>输入:n=7</li>
-<li>输出：132</li>
-</ul>
-<h2 id="卡特兰数讲解"><a href="#卡特兰数讲解" class="headerlink" title="卡特兰数讲解"></a>卡特兰数讲解</h2><ul>
-<li>一般公式</li>
-</ul>
-<p>$$ C_n = \frac{1}{n+1} \dbinom{2n}{n} = \frac{(2n)!}{(n+1)!n!} $$</p>
-<ul>
-<li>递推公式</li>
-</ul>
-<p><img src="https://upload.wikimedia.org/math/6/2/1/6217b3c99a3243afcd5d8dbd58186822.png" alt></p>
-<p>它也满足</p>
-<p><img src="https://upload.wikimedia.org/math/8/a/4/8a49332e4a46b3a2c7accec81160f5e3.png" alt></p>
-<p>卡塔兰数的渐近增长为</p>
-<p><img src="https://upload.wikimedia.org/math/d/1/9/d19d674c2da2a8c3864d97e0326ba9b4.png" alt></p>
-<p>前20项为（OEIS中的数列A000108）：1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190</p>
-<h2 id="样例程序"><a href="#样例程序" class="headerlink" title="样例程序"></a>样例程序</h2><p>求解第n项卡特兰数的WinDLX样例程序</p>
-<pre><code>;*********** WINDLX Ex.3: Factorial        *************
-;*********** (c) 1991 Günther Raidl        *************
-;*********** Modified: 1992 Maziar Khosravipour *************
-; class:
-; number:
-; author:
-;--------------------------------------------------------------------------
-; Program begin at symbol main
-; requires module INPUT
-; read a number from stdin and calculate the catalan number (type: double)
-; the result is written to stdout
-;--------------------------------------------------------------------------
-
-    .data
-Prompt:     .asciiz     &quot;An integer value &gt;1 : &quot;
-
-PrintfFormat:    .asciiz     &quot;Factorial = %g\n\n&quot;
-    .align        2
-PrintfPar:    .word        PrintfFormat
-PrintfValue:    .space        1024
-
-
-    .text
-    .global    main
-main:
-    ;*** Read value from stdin into R1
-    addi        r1,r0,Prompt
-    jal        InputUnsigned
-
-    ;*** init values
-    subi        r1,r1,1
-    movi2fp     f10,r1        ;R1 -&gt; D0    D0..Count register
-    cvti2d        f0,f10
-    addi        r2,r0,1     ;1 -&gt; D2    D2..result
-    movi2fp        f11,r2
-    cvti2d        f2,f11
-    movd        f4,f2        ;1-&gt; D4     D4..Constant 1
-    addd        f6,f0,f4    ;D0+1 -&gt; D6
-    addd        f8,f0,f0     ;2*D0 -&gt; D8
-    addi        r2,r0,1     ;1 -&gt; D10    D10..result
-    movi2fp        f11,r2
-    cvti2d        f10,f11
-
-    ;*** Break loop if D0 = 1
-Loop1:    led        f0,f4        ;D0&lt;=1 ?
-    bfpt        Loop2
-
-    ;*** Multiplication and next loop1
-    multd        f2,f2,f0
-    subd        f0,f0,f4
-    j        Loop1
-
-    ;*** Break loop if D8 = 1
-Loop2:    led        f8,f4        ;D8&lt;=1 ?
-    bfpt        Finish
-
-    ;*** Multiplication and next loop2
-    multd        f10,f10,f8
-    subd        f8,f8,f4
-    ;multd        f10,f10,f8
-    ;subd        f8,f8,f4
-    ;multd        f10,f10,f8
-    ;subd        f8,f8,f4
-    ;multd        f10,f10,f8
-    ;subd        f8,f8,f4
-    j        Loop2
-
-
-Finish:     ;*** write result to stdout
-    multd        f2,f2,f2
-    multd        f6,f6,f2
-    divd        f10,f10,f6
-    sd        PrintfValue,f10
-    addi        r14,r0,PrintfPar
-    trap        5
-
-    ;*** end
-    trap        0    
-</code></pre><h2 id="三种相关"><a href="#三种相关" class="headerlink" title="三种相关"></a>三种相关</h2><ul>
-<li>数据相关：当一条指令需要用到前面指令的执行结果，而这些指令均在流水线中重叠执行时</li>
-<li>结构相关：当指令在重叠执行过程中，硬件资源满足不了指令重叠执行的要求,发生资源冲突时</li>
-<li>控制相关：当不满足条件时或者其他改变PC值的跳转指令，通常发生控制相关</li>
-</ul>
-<h2 id="消除方法"><a href="#消除方法" class="headerlink" title="消除方法"></a>消除方法</h2><ul>
-<li>数据相关：勾选Enable Forwading，采用重定向技术</li>
-<li>结构相关：通过增加硬件的数目来解决结构相关</li>
-<li>控制相关：为了解决控制相关，我们要在分支跳转指令里循环展开，通过代码的冗余来做到消除控制相关</li>
-</ul>
+</blockquote>
+<p>从上述的约定可以看出，Promise最好的应用场景就是链式调用。</p>
+<h2 id="链式调用"><a href="#链式调用" class="headerlink" title="链式调用"></a>链式调用</h2><p>还是上一个业务场景，这次我们用Promise的then链来解决这个异步函数调用的问题：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'task1 take too longtime'</span>);</span><br><span class="line">            resolve();</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'this is task2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task1().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    task2();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最终结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">task1 take too longtime</span><br><span class="line">this is task2</span><br></pre></td></tr></table></figure>
+<p>同时Promise可不是仅仅.then一次，所谓的链式调用即是可以形成一个then链，理论上可以一直then来将异步函数顺序地执行下去，如下面的业务场景共有三个任务，需要顺序执行，分别消耗100，200，300ms的时间：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`task1 take <span class="subst">$&#123;time&#125;</span> ms`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(), time);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`task2 take <span class="subst">$&#123;time&#125;</span> ms`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(), time);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task3</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`task3 take <span class="subst">$&#123;time&#125;</span> ms`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(), time);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finalTask</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.time(<span class="string">'finalTask'</span>);</span><br><span class="line">    <span class="keyword">const</span> time1 = <span class="number">100</span>, time2 = <span class="number">200</span>, time3 = <span class="number">300</span>;<span class="comment">//三个任务分别模拟100，200，300ms</span></span><br><span class="line">    task1(time1)</span><br><span class="line">        .then(<span class="function"><span class="params">()</span>=&gt;</span>task2(time2))</span><br><span class="line">        .then(<span class="function"><span class="params">()</span>=&gt;</span>task3(time3))</span><br><span class="line">        .then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.timeEnd(<span class="string">'finalTask'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">finalTask();</span><br></pre></td></tr></table></figure>
+<p>最后的结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">task1 take 100 ms</span><br><span class="line">task2 take 200 ms</span><br><span class="line">task3 take 300 ms</span><br><span class="line">finalTask: 626.755ms</span><br></pre></td></tr></table></figure>
+<p>可以看到三个任务是顺序执行的，并且消耗的时间与计时器的时间相差无几。</p>
+<h2 id="链式调用传参"><a href="#链式调用传参" class="headerlink" title="链式调用传参"></a>链式调用传参</h2><p>设计场景中一个常见的需求就是连续执行两个或者多个异步操作，并且每一个后来的操作都在前面的操作执行成功之后，带着上一步操作所返回的结果开始执行。下面演示promise链式传递参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'task1 take too longtime'</span>);</span><br><span class="line">            resolve(<span class="string">'this is task1 data'</span>);</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task2</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'this is task2'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task1().then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    task2(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最后结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">task1 take too longtime</span><br><span class="line">this is task2</span><br><span class="line">this is task1 data</span><br></pre></td></tr></table></figure>
+<p>可以看到任务1和2还是顺序执行的，并且在任务2中，拿到了任务1传递来的参数，这个参数通过任务1中的resolve函数传递给下一个异步函数。每一个 Promise 代表了链式中另一个异步过程的完成。</p>
+<h2 id="Catch的后续链式调用"><a href="#Catch的后续链式调用" class="headerlink" title="Catch的后续链式调用"></a>Catch的后续链式调用</h2><p>但是在很多场景中，可能存在需要catch error的情况，比如服务器宕机了，或者甚至服务器传来不正确的json数据（笔者就遇到了这种情况，json格式错误，但是前端可以通过字符串操作来纠正并解析数据，然而每次异步获取数据都会走catch）。在这种场景下，首先要明确一点，catch之后是可以继续链式调用promise的，同时catch中可以对数据处理并传递给下一个函数，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Initial'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Something failed'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Do this'</span>);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Do that'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'error text'</span>;</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Do this whatever happened before'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最后的执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Initial</span><br><span class="line">Do that</span><br><span class="line">error text</span><br><span class="line">Do this whatever happened before</span><br></pre></td></tr></table></figure>
+<p>对这个结果进行分析，可以看出异步函数是链式顺序执行的，其中“Do this”方法中由于抛出一个Error，所以没有输出“Do this”。接着catch方法中正确执行，并且假设“error text”为处理后的结果，是可以顺利传递给下一个方法的。</p>
 
       
     </div>
@@ -719,9 +591,9 @@ Finish:     ;*** write result to stdout
       
         <div class="post-tags">
           
-            <a href="/tags/WinDLX/" rel="tag"># WinDLX</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
-            <a href="/tags/指令集流水线/" rel="tag"># 指令集流水线</a>
+            <a href="/tags/异步/" rel="tag"># 异步</a>
           
         </div>
       
@@ -734,14 +606,18 @@ Finish:     ;*** write result to stdout
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/03/09/JavaScript中的async-await浅析(二)/" rel="next" title="JavaScript中的async/await浅析（二）">
+                <i class="fa fa-chevron-left"></i> JavaScript中的async/await浅析（二）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/25/Android Studio常用快捷键/" rel="prev" title="Android Studio常用快捷键">
-                Android Studio常用快捷键 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/10/hexo-Next-主题添加搜索功能/" rel="prev" title="hexo - Next 主题添加搜索功能">
+                hexo - Next 主题添加搜索功能 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -917,7 +793,7 @@ Finish:     ;*** write result to stdout
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WinDLX简介"><span class="nav-number">1.</span> <span class="nav-text">WinDLX简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境配置"><span class="nav-number">2.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WinDLX子窗口"><span class="nav-number">3.</span> <span class="nav-text">WinDLX子窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline"><span class="nav-number">3.1.</span> <span class="nav-text">Pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">3.2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clock-Cycle-Diagram"><span class="nav-number">3.3.</span> <span class="nav-text">Clock Cycle Diagram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Breakpoint"><span class="nav-number">3.4.</span> <span class="nav-text">Breakpoint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Register"><span class="nav-number">3.5.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Statistics"><span class="nav-number">3.6.</span> <span class="nav-text">Statistics</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WinDLX指令分类"><span class="nav-number">4.</span> <span class="nav-text">WinDLX指令分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Trap机制"><span class="nav-number">5.</span> <span class="nav-text">Trap机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例讲解"><span class="nav-number">6.</span> <span class="nav-text">实例讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#程序说明"><span class="nav-number">6.1.</span> <span class="nav-text">程序说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卡特兰数讲解"><span class="nav-number">6.2.</span> <span class="nav-text">卡特兰数讲解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例程序"><span class="nav-number">6.3.</span> <span class="nav-text">样例程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种相关"><span class="nav-number">6.4.</span> <span class="nav-text">三种相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消除方法"><span class="nav-number">6.5.</span> <span class="nav-text">消除方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是promise"><span class="nav-number">1.</span> <span class="nav-text">什么是promise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#链式调用"><span class="nav-number">1.1.</span> <span class="nav-text">链式调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链式调用传参"><span class="nav-number">1.2.</span> <span class="nav-text">链式调用传参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Catch的后续链式调用"><span class="nav-number">1.3.</span> <span class="nav-text">Catch的后续链式调用</span></a></li></ol></li></ol></div>
             
 
           </div>
