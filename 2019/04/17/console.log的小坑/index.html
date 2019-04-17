@@ -98,23 +98,27 @@
 
 
 
-  <meta name="description" content="爱生活，爱那只小喵">
-<meta property="og:type" content="website">
-<meta property="og:title" content="XhkSun&#39;s Blog">
-<meta property="og:url" content="http://xhksun.com/archives/2016/index.html">
+  <meta name="description" content="console.log里的小坑 兼听则明，偏信则暗  最近在写代码的时候，遇到了一个问题，很有趣所以要把这个现象记录下来。我在console.log里获取到的数值，会因为我后面调用的组件而改变，导致我debug的时候一直没有正确地定位到真正发生错误的地方，吃一堑长一智，以后在chrome里debug，不仅要使用console.log，以后还要使用断点调试。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="console.log的小坑">
+<meta property="og:url" content="http://xhksun.com/2019/04/17/console.log的小坑/index.html">
 <meta property="og:site_name" content="XhkSun&#39;s Blog">
-<meta property="og:description" content="爱生活，爱那只小喵">
+<meta property="og:description" content="console.log里的小坑 兼听则明，偏信则暗  最近在写代码的时候，遇到了一个问题，很有趣所以要把这个现象记录下来。我在console.log里获取到的数值，会因为我后面调用的组件而改变，导致我debug的时候一直没有正确地定位到真正发生错误的地方，吃一堑长一智，以后在chrome里debug，不仅要使用console.log，以后还要使用断点调试。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img.shields.io/badge/link-996.icu-red.svg">
+<meta property="og:updated_time" content="2019-04-17T15:20:59.746Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XhkSun&#39;s Blog">
-<meta name="twitter:description" content="爱生活，爱那只小喵">
+<meta name="twitter:title" content="console.log的小坑">
+<meta name="twitter:description" content="console.log里的小坑 兼听则明，偏信则暗  最近在写代码的时候，遇到了一个问题，很有趣所以要把这个现象记录下来。我在console.log里获取到的数值，会因为我后面调用的组件而改变，导致我debug的时候一直没有正确地定位到真正发生错误的地方，吃一堑长一智，以后在chrome里debug，不仅要使用console.log，以后还要使用断点调试。">
+<meta name="twitter:image" content="https://img.shields.io/badge/link-996.icu-red.svg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://xhksun.com/archives/2016/">
+  <link rel="canonical" href="http://xhksun.com/2019/04/17/console.log的小坑/">
 
 
 
@@ -124,7 +128,7 @@
   };
 </script>
 
-  <title>归档 | XhkSun's Blog</title>
+  <title>console.log的小坑 | XhkSun's Blog</title>
   
 
 
@@ -172,7 +176,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,7 +269,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -294,25 +298,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -359,113 +344,265 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 7 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2016">2016</h1>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xhksun.com/2019/04/17/console.log的小坑/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xia Hankai">
+      <meta itemprop="description" content="爱生活，爱那只小喵">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XhkSun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2016/05/25/Android Studio常用快捷键/" itemprop="url">
-            
-              <span itemprop="name">Android Studio常用快捷键</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">console.log的小坑
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-05-25T09:43:05+08:00" content="2016-05-25">
-          05-25
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-17 22:10:22 / 修改时间：23:20:59" itemprop="dateCreated datePublished" datetime="2019-04-17T22:10:22+08:00">2019-04-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/04/17/console.log的小坑/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/17/console.log的小坑/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/04/17/console.log的小坑/" class="leancloud_visitors" data-flag-title="console.log的小坑">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2016/04/23/浅析WinDLX及其实战/" itemprop="url">
-            
-              <span itemprop="name">浅析WinDLX及其实战</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-04-23T20:38:05+08:00" content="2016-04-23">
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p><a href="https://996.icu" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/link-996.icu-red.svg" alt="996.icu"></a></p>
+<h1 id="console-log里的小坑"><a href="#console-log里的小坑" class="headerlink" title="console.log里的小坑"></a>console.log里的小坑</h1><blockquote>
+<p>兼听则明，偏信则暗</p>
+</blockquote>
+<p>最近在写代码的时候，遇到了一个问题，很有趣所以要把这个现象记录下来。我在console.log里获取到的数值，会因为我后面调用的组件而改变，导致我debug的时候一直没有正确地定位到真正发生错误的地方，吃一堑长一智，以后在chrome里debug，不仅要使用console.log，以后还要使用断点调试。</p>
+<a id="more"></a>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>这个问题是这样的，我在异步获取到服务器的数据后，我使用了一个甘特图的组件来初始化另一个数据。伪代码大概如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">get</span>(url).then(data=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">  <span class="keyword">let</span> tempdata=&#123;...data,<span class="attr">links</span>:[]&#125;;</span><br><span class="line">  gantt.prom(tempdata);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>然后我获取到的data一直是错误的，导致我一直以为是服务器端写错的问题。但是在服务器端打了断点，从数据库中获取到数据后，在服务器端的数据流里，变量一直是正确的，然后到了前端里，console.log后就是错误的。</p>
+<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>后来在同学的帮助下，先在console.log处打了断点，然后发现此时的data还是正确的。然后到了<code>gantt.prom(tempdata)</code>这句话后，data就变成了错误的数据。可以猜想到，这个控件会处理我组件里所有的数据结构，但是一开始没有想到是后面的语句修改了前面的数据数值。</p>
+<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>那么为什么console.log会发生这种现象呢？我在控制台里输入这样的语句：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj=&#123;<span class="attr">id</span>:<span class="number">1</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj);</span><br><span class="line">obj.id=<span class="number">110</span>;</span><br></pre></td></tr></table></figure>
+<p>在chrome的控制台里会出现这个语句：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">id</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>这个和预想的是一样的，但是当我展开的时候，控制台就是这样的情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;id: 1&#125;</span><br><span class="line">id: 110</span><br><span class="line">__proto__: Object</span><br></pre></td></tr></table></figure>
+<p>也就是说，id确实被改变了。即使控制台已经输出了，但是当展开的一瞬间，会指向新的对象，然后获取到当前对象的数值。产生这个现象的原因就是我打印的是一个对象，是一个引用，当我第一次打印的时候，数值还没有变化，而当我修改后展开这个对象，引用会指向对象，然后获取到新的数值。</p>
+<p>但是我还是没有明白为什么gantt这个控件这么强大，可以修改我在react里的数据的属性，强行修改成他所需要的格式，即便是我传递给他的参数并不是data。我一开始分析是由于我的…解析了data放在了tempdata里面，但是后来在试验里发现并不会由于…的解析数据导致原数据的变化。<br>所以gantt修改数据我还是没有明白，但是console.log这一现象还是值得我在以后的生涯中注意的。而且也意识到了断点的好处，断点即使是在异步里，也可以完美的执行我所想要的顺序。并且可以避免这种调用了一个控件，偷偷在后面的步骤中，修改了之前的数值，导致我log出错的情况。</p>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/16/小米秋招面试题题解/" rel="next" title="小米秋招面试题题解">
+                <i class="fa fa-chevron-left"></i> 小米秋招面试题题解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -485,8 +622,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -592,6 +738,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#console-log里的小坑"><span class="nav-number">1.</span> <span class="nav-text">console.log里的小坑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">2.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解决"><span class="nav-number">3.</span> <span class="nav-text">问题解决</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题分析"><span class="nav-number">4.</span> <span class="nav-text">问题分析</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -735,6 +898,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
 
   
 
@@ -780,6 +947,8 @@
 
 
 
+
+  
 
 
   
@@ -1111,38 +1280,37 @@
   
   <script>
     
-    function showTime(Counter) {
-      var entries = [];
+    function addCount(Counter) {
       var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
 
-      $visitors.each(function() {
-        entries.push( $(this).attr('id').trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
         .done(function({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for (var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if (countSpan.text() == '') {
-              countSpan.text(0);
-            }
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
           }
         })
         .fail(function ({ responseJSON }) {
@@ -1167,9 +1335,7 @@
             });
           };
           
-            if ($('.post-title-link').length >= 1) {
-              showTime(Counter);
-            }
+            addCount(Counter);
           
         });
     });

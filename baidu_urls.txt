@@ -1,3 +1,4 @@
+http://xhksun.com/2019/04/17/console.log的小坑/
 http://xhksun.com/2019/03/16/小米秋招面试题题解/
 http://xhksun.com/2019/03/10/hexo-Next-主题添加搜索功能/
 http://xhksun.com/2019/03/09/JavaScript中的async-await浅析(一)/
