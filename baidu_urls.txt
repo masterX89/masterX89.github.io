@@ -1,3 +1,4 @@
+http://xhksun.com/2019/08/19/循环异步引发的思考/
 http://xhksun.com/2019/08/14/整理近期要写的东西/
 http://xhksun.com/2019/08/07/正则表达式（二）/
 http://xhksun.com/2019/08/07/正则表达式（一）/
@@ -7,4 +8,3 @@ http://xhksun.com/2019/03/10/hexo-Next-主题添加搜索功能/
 http://xhksun.com/2019/03/09/JavaScript中的async-await浅析(一)/
 http://xhksun.com/2019/03/09/JavaScript中的async-await浅析(二)/
 http://xhksun.com/2016/05/25/Android Studio常用快捷键/
-http://xhksun.com/2016/04/23/浅析WinDLX及其实战/
