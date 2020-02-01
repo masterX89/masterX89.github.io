@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="WinDLX简介 WinDLX模拟器是一个基于Windows操作系统的图形化、交互式DLX指令集模拟器，能够演示DLX指令集流水线是如何工作的。该模拟器可以装载DLX汇编语言程序（后缀为“.s”的文件），然后单步、设断点或是连续执行该程序。CPU的寄存器、流水线、I/O和存储器都用图形进行表示，以形象生动的方式描述DLX流水线的工作过程。模拟器还提供了对流水线操作的统计功能，便于对流水线进行性能分">
+<meta name="keywords" content="WinDLX,指令集流水线">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析WinDLX及其实战">
+<meta property="og:url" content="http://xhksun.com/2016/04/23/浅析WinDLX及其实战/index.html">
+<meta property="og:site_name" content="XhkSun&#39;s Blog">
+<meta property="og:description" content="WinDLX简介 WinDLX模拟器是一个基于Windows操作系统的图形化、交互式DLX指令集模拟器，能够演示DLX指令集流水线是如何工作的。该模拟器可以装载DLX汇编语言程序（后缀为“.s”的文件），然后单步、设断点或是连续执行该程序。CPU的寄存器、流水线、I/O和存储器都用图形进行表示，以形象生动的方式描述DLX流水线的工作过程。模拟器还提供了对流水线操作的统计功能，便于对流水线进行性能分">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://i.imgur.com/NvyjyDO.png">
+<meta property="og:image" content="http://i.imgur.com/3XBX80r.png">
+<meta property="og:image" content="http://i.imgur.com/1qM62YH.png">
+<meta property="og:image" content="http://i.imgur.com/VqE29fz.png">
+<meta property="og:image" content="https://upload.wikimedia.org/math/6/2/1/6217b3c99a3243afcd5d8dbd58186822.png">
+<meta property="og:image" content="https://upload.wikimedia.org/math/8/a/4/8a49332e4a46b3a2c7accec81160f5e3.png">
+<meta property="og:image" content="https://upload.wikimedia.org/math/d/1/9/d19d674c2da2a8c3864d97e0326ba9b4.png">
+<meta property="og:updated_time" content="2019-03-08T12:44:37.361Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅析WinDLX及其实战">
+<meta name="twitter:description" content="WinDLX简介 WinDLX模拟器是一个基于Windows操作系统的图形化、交互式DLX指令集模拟器，能够演示DLX指令集流水线是如何工作的。该模拟器可以装载DLX汇编语言程序（后缀为“.s”的文件），然后单步、设断点或是连续执行该程序。CPU的寄存器、流水线、I/O和存储器都用图形进行表示，以形象生动的方式描述DLX流水线的工作过程。模拟器还提供了对流水线操作的统计功能，便于对流水线进行性能分">
+<meta name="twitter:image" content="http://i.imgur.com/NvyjyDO.png">
+  <link rel="canonical" href="http://xhksun.com/2016/04/23/浅析WinDLX及其实战/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>浅析WinDLX及其实战 | XhkSun's Blog</title>
+  <meta name="generator" content="Hexo 3.8.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XhkSun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">just someting</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-wrapper">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="搜索..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xhksun.com/2016/04/23/浅析WinDLX及其实战/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xia Hankai">
+      <meta itemprop="description" content="爱生活，爱那只小喵">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XhkSun's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">浅析WinDLX及其实战
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2016-04-23 20:38:05" itemprop="dateCreated datePublished" datetime="2016-04-23T20:38:05+08:00">2016-04-23</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-03-08 20:44:37" itemprop="dateModified" datetime="2019-03-08T20:44:37+08:00">2019-03-08</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机体系结构/" itemprop="url" rel="index"><span itemprop="name">计算机体系结构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2016/04/23/浅析WinDLX及其实战/" class="post-meta-item leancloud_visitors" data-flag-title="浅析WinDLX及其实战" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/04/23/浅析WinDLX及其实战/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2016/04/23/浅析WinDLX及其实战/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>0</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="WinDLX简介"><a href="#WinDLX简介" class="headerlink" title="WinDLX简介"></a>WinDLX简介</h1><blockquote>
+<p>WinDLX模拟器是一个基于Windows操作系统的图形化、交互式DLX指令集模拟器，能够演示DLX指令集流水线是如何工作的。该模拟器可以装载DLX汇编语言程序（后缀为“.s”的文件），然后单步、设断点或是连续执行该程序。CPU的寄存器、流水线、I/O和存储器都用图形进行表示，以形象生动的方式描述DLX流水线的工作过程。模拟器还提供了对流水线操作的统计功能，便于对流水线进行性能分析。</p>
+</blockquote>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><ul>
+<li>主要运行在win3.0上，16bit软件，<font color="#FF0000">不支持64bit系统</font>。所以在使用前需要确保系统环境为32bit，方可兼容此软件，否则需要虚拟机环境。</li>
+<li>为WinDLX创建目录，例如D:\WINDLX，注意受编译的约束，路径名中<font color="#FF0000">不可以包含汉字</font>。</li>
+<li>解压WinDLX软件包或拷贝所有的WinDLX文件（至少包含 windlx.exe，windlx.hlp，fact.s 和input.s ）到这个WinDLX 目录。</li>
+</ul>
+<a id="more"></a>
+<h1 id="WinDLX子窗口"><a href="#WinDLX子窗口" class="headerlink" title="WinDLX子窗口"></a>WinDLX子窗口</h1><h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><ul>
+<li>IF取指阶段</li>
+<li>ID译码阶段</li>
+<li>MEM访存阶段</li>
+<li>WB写回阶段</li>
+<li>intEX整型加阶段执行</li>
+<li>faddEX浮点加执行阶段</li>
+<li>fmul浮点乘执行阶段</li>
+<li>fdivEX浮点除执行阶段</li>
+</ul>
+<p><img src="http://i.imgur.com/NvyjyDO.png" alt></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><img src="http://i.imgur.com/3XBX80r.png" alt></p>
+<blockquote>
+<p>三栏信息，从左到右依次为：地址 (符号或数字)、命令的十六进制机器代码和汇编命令。</p>
+</blockquote>
+<p><img src="http://i.imgur.com/1qM62YH.png" alt></p>
+<blockquote>
+<p>按下 F7 键，模拟就向前执行一步，第一行的颜色变成黄色，下一行变成棕色，依次向下执行。</p>
+</blockquote>
+<h2 id="Clock-Cycle-Diagram"><a href="#Clock-Cycle-Diagram" class="headerlink" title="Clock Cycle Diagram"></a>Clock Cycle Diagram</h2><p><img src="http://i.imgur.com/VqE29fz.png" alt></p>
+<blockquote>
+<p>横坐标代表时钟周期，纵坐标为指令集</p>
+</blockquote>
+<h2 id="Breakpoint"><a href="#Breakpoint" class="headerlink" title="Breakpoint"></a>Breakpoint</h2><blockquote>
+<p>此为增设断点的子窗口</p>
+</blockquote>
+<h2 id="Register"><a href="#Register" class="headerlink" title="Register"></a>Register</h2><blockquote>
+<p>此为寄存器的子窗口</p>
+</blockquote>
+<h2 id="Statistics"><a href="#Statistics" class="headerlink" title="Statistics"></a>Statistics</h2><blockquote>
+<p>分析窗口，主要关注RAW stall数据相关，Structral stall结构相关，Control stall控制相关。</p>
+<p>下文中会主要分析这三者的产生原因及其消除方法。</p>
+</blockquote>
+<h1 id="WinDLX指令分类"><a href="#WinDLX指令分类" class="headerlink" title="WinDLX指令分类"></a>WinDLX指令分类</h1><ol>
+<li>Load/Store指令：除R0之外，所有通用寄存器与浮点寄存器都可以作为加载或存储之用</li>
+<li>ALU操作指令：所有的ALU操作都是寄存器–寄存器指令。加，减，与，或，异或，移位，比较指令比较两个寄存器(=, !=, &lt;, &gt;, =&lt;, =&gt;)，如果条件为真，则在目标寄存器置1，否则置0。</li>
+<li>分支/跳转指令：所有分支都是条件分支，分支条件由指令测试寄存器为零或非零来指定。</li>
+<li>浮点运算指令：浮点加，减，乘，除(浮点格式为IEEE754)</li>
+</ol>
+<h1 id="Trap机制"><a href="#Trap机制" class="headerlink" title="Trap机制"></a>Trap机制</h1><blockquote>
+<p>Trap在DLX程序和系统I/O之间建立了接口。在WinDLX中共定义了5种Trap。</p>
+</blockquote>
+<ul>
+<li>0对于Trap指令来说是无效参数，Trap  0用来结束程序</li>
+<li>Trap  1可以为读写打开一个文件，打开的文件在DLX重置或结束之后自动关闭</li>
+<li>Trap  2关闭由Trap  1打开的文件</li>
+<li>Trap  3从文件块读，读入一个文件块或者标准输入的一行</li>
+<li>Trap  4向文件块写，向文存储器或标准输出块写</li>
+</ul>
+<h1 id="实例讲解"><a href="#实例讲解" class="headerlink" title="实例讲解"></a>实例讲解</h1><h2 id="程序说明"><a href="#程序说明" class="headerlink" title="程序说明"></a>程序说明</h2><p>功能：卡特兰数求解<br><br>输入：输入一个大于0的自然数n，程序会计算第n项的卡特兰数<br></p>
+<p>测试用例：</p>
+<ul>
+<li>输入:n=7</li>
+<li>输出：132</li>
+</ul>
+<h2 id="卡特兰数讲解"><a href="#卡特兰数讲解" class="headerlink" title="卡特兰数讲解"></a>卡特兰数讲解</h2><ul>
+<li>一般公式</li>
+</ul>
+<p>$$ C_n = \frac{1}{n+1} \dbinom{2n}{n} = \frac{(2n)!}{(n+1)!n!} $$</p>
+<ul>
+<li>递推公式</li>
+</ul>
+<p><img src="https://upload.wikimedia.org/math/6/2/1/6217b3c99a3243afcd5d8dbd58186822.png" alt></p>
+<p>它也满足</p>
+<p><img src="https://upload.wikimedia.org/math/8/a/4/8a49332e4a46b3a2c7accec81160f5e3.png" alt></p>
+<p>卡塔兰数的渐近增长为</p>
+<p><img src="https://upload.wikimedia.org/math/d/1/9/d19d674c2da2a8c3864d97e0326ba9b4.png" alt></p>
+<p>前20项为（OEIS中的数列A000108）：1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190</p>
+<h2 id="样例程序"><a href="#样例程序" class="headerlink" title="样例程序"></a>样例程序</h2><p>求解第n项卡特兰数的WinDLX样例程序</p>
+<pre><code>;*********** WINDLX Ex.3: Factorial        *************
+;*********** (c) 1991 Günther Raidl        *************
+;*********** Modified: 1992 Maziar Khosravipour *************
+; class:
+; number:
+; author:
+;--------------------------------------------------------------------------
+; Program begin at symbol main
+; requires module INPUT
+; read a number from stdin and calculate the catalan number (type: double)
+; the result is written to stdout
+;--------------------------------------------------------------------------
+
+    .data
+Prompt:     .asciiz     &quot;An integer value &gt;1 : &quot;
+
+PrintfFormat:    .asciiz     &quot;Factorial = %g\n\n&quot;
+    .align        2
+PrintfPar:    .word        PrintfFormat
+PrintfValue:    .space        1024
+
+
+    .text
+    .global    main
+main:
+    ;*** Read value from stdin into R1
+    addi        r1,r0,Prompt
+    jal        InputUnsigned
+
+    ;*** init values
+    subi        r1,r1,1
+    movi2fp     f10,r1        ;R1 -&gt; D0    D0..Count register
+    cvti2d        f0,f10
+    addi        r2,r0,1     ;1 -&gt; D2    D2..result
+    movi2fp        f11,r2
+    cvti2d        f2,f11
+    movd        f4,f2        ;1-&gt; D4     D4..Constant 1
+    addd        f6,f0,f4    ;D0+1 -&gt; D6
+    addd        f8,f0,f0     ;2*D0 -&gt; D8
+    addi        r2,r0,1     ;1 -&gt; D10    D10..result
+    movi2fp        f11,r2
+    cvti2d        f10,f11
+
+    ;*** Break loop if D0 = 1
+Loop1:    led        f0,f4        ;D0&lt;=1 ?
+    bfpt        Loop2
+
+    ;*** Multiplication and next loop1
+    multd        f2,f2,f0
+    subd        f0,f0,f4
+    j        Loop1
+
+    ;*** Break loop if D8 = 1
+Loop2:    led        f8,f4        ;D8&lt;=1 ?
+    bfpt        Finish
+
+    ;*** Multiplication and next loop2
+    multd        f10,f10,f8
+    subd        f8,f8,f4
+    ;multd        f10,f10,f8
+    ;subd        f8,f8,f4
+    ;multd        f10,f10,f8
+    ;subd        f8,f8,f4
+    ;multd        f10,f10,f8
+    ;subd        f8,f8,f4
+    j        Loop2
+
+
+Finish:     ;*** write result to stdout
+    multd        f2,f2,f2
+    multd        f6,f6,f2
+    divd        f10,f10,f6
+    sd        PrintfValue,f10
+    addi        r14,r0,PrintfPar
+    trap        5
+
+    ;*** end
+    trap        0    
+</code></pre><h2 id="三种相关"><a href="#三种相关" class="headerlink" title="三种相关"></a>三种相关</h2><ul>
+<li>数据相关：当一条指令需要用到前面指令的执行结果，而这些指令均在流水线中重叠执行时</li>
+<li>结构相关：当指令在重叠执行过程中，硬件资源满足不了指令重叠执行的要求,发生资源冲突时</li>
+<li>控制相关：当不满足条件时或者其他改变PC值的跳转指令，通常发生控制相关</li>
+</ul>
+<h2 id="消除方法"><a href="#消除方法" class="headerlink" title="消除方法"></a>消除方法</h2><ul>
+<li>数据相关：勾选Enable Forwading，采用重定向技术</li>
+<li>结构相关：通过增加硬件的数目来解决结构相关</li>
+<li>控制相关：为了解决控制相关，我们要在分支跳转指令里循环展开，通过代码的冗余来做到消除控制相关</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/WinDLX/" rel="tag"># WinDLX</a>
+            
+              <a href="/tags/指令集流水线/" rel="tag"># 指令集流水线</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/05/25/Android Studio常用快捷键/" rel="prev" title="Android Studio常用快捷键">
+                  Android Studio常用快捷键 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Xia Hankai</p>
+  <div class="site-description motion-element" itemprop="description">爱生活，爱那只小喵</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://yajha.com/" title="http://yajha.com/" rel="noopener" target="_blank">cbyj</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WinDLX简介"><span class="nav-number">1.</span> <span class="nav-text">WinDLX简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境配置"><span class="nav-number">2.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WinDLX子窗口"><span class="nav-number">3.</span> <span class="nav-text">WinDLX子窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline"><span class="nav-number">3.1.</span> <span class="nav-text">Pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">3.2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clock-Cycle-Diagram"><span class="nav-number">3.3.</span> <span class="nav-text">Clock Cycle Diagram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Breakpoint"><span class="nav-number">3.4.</span> <span class="nav-text">Breakpoint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Register"><span class="nav-number">3.5.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Statistics"><span class="nav-number">3.6.</span> <span class="nav-text">Statistics</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WinDLX指令分类"><span class="nav-number">4.</span> <span class="nav-text">WinDLX指令分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Trap机制"><span class="nav-number">5.</span> <span class="nav-text">Trap机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例讲解"><span class="nav-number">6.</span> <span class="nav-text">实例讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#程序说明"><span class="nav-number">6.1.</span> <span class="nav-text">程序说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卡特兰数讲解"><span class="nav-number">6.2.</span> <span class="nav-text">卡特兰数讲解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例程序"><span class="nav-number">6.3.</span> <span class="nav-text">样例程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种相关"><span class="nav-number">6.4.</span> <span class="nav-text">三种相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消除方法"><span class="nav-number">6.5.</span> <span class="nav-text">消除方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xia Hankai</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">31k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">28 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        <span>0%</span>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+  
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+            
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=geMC457twzQiJdA9WCkkhOxl-MdYXbMMI')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'geMC457twzQiJdA9WCkkhOxl-MdYXbMMI',
+            'X-LC-Key': '7cpYOTGTangyCK6lYikyD6po',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script><script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'geMC457twzQiJdA9WCkkhOxl-MdYXbMMI',
+    appKey: '7cpYOTGTangyCK6lYikyD6po',
+    placeholder: '欢迎评论',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src>
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
